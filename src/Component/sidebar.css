@@ -1,0 +1,16 @@
+.sidebar{
+    flex:3;
+    height:91.5vh;
+    background-color: antiquewhite;
+}
+.sidebarwrapper{
+    padding:20px;
+    background-color: green;
+}
+.sidebar .sidebarImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left:109px;
+}

@@ -1,0 +1,152 @@
+.login {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .loginWrapper {
+    width: 70%;
+    height: 70%;
+    display: flex;
+  }
+  
+  .loginLeft,
+  .loginRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px 5px;
+  }
+  
+  .loginLogo {
+    font-size: 50px;
+    font-weight: 800;
+    color: #1775ee;
+    margin-bottom: 10px;
+  }
+  
+  .loginDesc {
+    font-size:24px;
+  }
+  
+  /* .loginBox{
+    
+  } */
+  #first{
+    height:auto;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.718);
+      border-radius:10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+  /* .loginButton{
+      height: 50px;
+      border-radius: 10px;
+      border: none;
+      background-color: #1775ee;
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-left: 148px;
+      width:90px;
+  }
+  
+  .loginForgot{
+      text-align: center;
+      color: #1775ee;
+  }
+  
+  .loginRegisterButton{
+      width: 109px;
+      align-self: center;
+      height: 50px;
+      border-radius: 10px;
+      border: none;
+      background-color:#1775ee;
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+  } */
+#final input[type=email]{
+  border:none;
+  outline:auto;
+  width: 90%;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 4px;
+}
+#final1 input[type=password]{
+  border:none;
+  outline:auto;
+  width: 90%;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 4px;
+}
+label {
+  font-weight: bold;
+}
+#action{
+  margin-top: auto; 
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+}
+/* .login.loginWrapper.loginRight.loginBox.action {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+         
+} */
+#action button {
+  width: 100%;
+  border: none;
+  padding: 18px;
+  font-family: 'Rubik', sans-serif;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: #e8e9ec;
+  color: #777;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0;
+  letter-spacing: 0.2px;
+  outline: 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  font-weight: bold;
+}
+#action button:hover {
+  background: #2188bf;
+}
+#action button:nth-child(2) {
+  background:#e8e9ec;
+  color: #fff;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 4px;
+}
+#action button:nth-child(2):hover {
+  background: #2188bf;
+}
+#link {
+  text-decoration: none;
+  color: #747474;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-top: 20px;
+}
+#action button link{
+  font-size: larger;
+}
