@@ -1,12 +1,10 @@
 import Header from "../../Component/Header";
 import Sidebar from "../../Component/Sidebar";
 import Feed from "../../Component/Feed";
-import { Link } from "react-router-dom";
 import Rightbar from "../../Component/Rightbar";
 import "./home.css";
 import { Driver } from "../../Auth/neo4j";
 import { useState } from "react";
-import { propNames } from "@chakra-ui/react";
 
 export default function Home(props) {
 	console.log(props.friend);
@@ -36,11 +34,11 @@ export default function Home(props) {
 	})();
 	return (
 		<>
-			<Header userName={userName} Name={name} bioD={biod} email={email} profileUrl={proUrl}/>
+			<Header profileUrl={proUrl}/>
 			<div className="homeContainer">
 				<Sidebar userName={userName} Name={name} bioD={biod} email={email} profileUrl={proUrl} />
-				<Feed userName={userName} Name={name} bioD={biod} email={email} profileUrl={proUrl} />
-				<Rightbar userName={userName} Name={name} bioD={biod} email={email} profileUrl={proUrl} friend={props.friend} nonFriend={props.nonFriend}/>
+				<Feed Name={name} profileUrl={proUrl} />
+				<Rightbar userName={userName}/>
 			</div>
 
 		</>

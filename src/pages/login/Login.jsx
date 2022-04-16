@@ -2,17 +2,40 @@ import "./login.css";
 import { useState } from "react";
 import { Driver } from "../../Auth/neo4j";
 import { Link } from "react-router-dom";
-import Home from "../home/Home";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 export default function Login(props) {
 	let is_user_exists = false;
 	const [loginModal, setLoginModal] = useState(false);
 	const [invalidModal, setInvalidModal] = useState(false);
 	const [registerModal, setRegisterModal] = useState(false);
+	const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
+	const [forgotUser, setForgotUser] = useState('');
+	const [error, setError] = useState('');
+	const [accountExistsModal, setAccountExistsModal] = useState(false);
+	const accountExistsToggle = () => setAccountExistsModal(!accountExistsModal);
+	const handleForgotUser = (event) => {
+		setForgotUser(event.target.value);
+	}
+	const [forgotPassowrd, setForgotPassword] = useState({
+		pass: '',
+		cpass: ''
+	});
+	const handleForgotNewPassword = event => {
+		setForgotPassword({
+			pass: event.target.value,
+			cpass: ''
+		});
+	}
+	const handleForgotConfirmPassword = event => {
+		setForgotPassword({
+			pass: forgotPassowrd.pass,
+			cpass: event.target.value
+		});
+	}
 	const loginToggle = () => setLoginModal(!loginModal);
 	const invalidToggle = () => setInvalidModal(!invalidModal);
 	const registerToggle = () => setRegisterModal(!registerModal);
+	const forgotPasswordToggle = () => setForgotPasswordModal(!forgotPasswordModal);
 	const [password, setPassword] = useState('');
 	const handlePassword = event => {
 		setPassword(event.target.value);
@@ -41,11 +64,44 @@ export default function Login(props) {
 				}
 			} catch (error) {
 				console.error('Something went wrong: ', error)
-			} finally {
-				// await session.close()
 			}
-			// await driver.close()
 		})();
+	}
+	const handleForgotPassword = (e) => {
+		if (forgotPassowrd.pass === forgotPassowrd.cpass) {
+			(async () => {
+				const driver = Driver();
+				const session = driver.session();
+				const user = forgotUser;
+				const pass = forgotPassowrd.pass;
+				try {
+					const userExistsQuery = `Match (n:User{username:$user}) With Count(n)>0 as node_exists return node_exists`;
+					const userExistsQueryResult = await session.writeTransaction(tx =>
+						tx.run(userExistsQuery, { user: user })
+					)
+					userExistsQueryResult.records.forEach(record => {
+						const exists = record.get('node_exists')
+						if (exists) {
+							is_user_exists = true;
+						}
+					})
+					if (is_user_exists) {
+						const updatePasswordQuery = `Match (n:User{username:$user}) set n.password = $pass return n;`;
+						const updatePasswordQueryResult = await session.writeTransaction(tx =>
+							tx.run(updatePasswordQuery, { user, pass })
+						)
+						forgotPasswordToggle();
+					} else {
+						setError('Invalid Username');
+						accountExistsToggle();
+					}
+				} catch (error) {
+					console.error('Something went wrong: ', error)
+				}
+			})();
+		} else {
+			alert('Passwords do not match');
+		}
 	}
 	return (
 		<>
@@ -81,11 +137,9 @@ export default function Login(props) {
 									required />
 							</div>
 
-							<a href="#" id="link">Forgot Your Password?</a>
+							<span onClick={forgotPasswordToggle}>Forgot Your Password?</span>
 							<div className="action" id="action">
-								{/* <Link to="./register"> */}
 								<button type="button" className="btn btn-primary" data-bs-toggle="modal" onClick={registerToggle}>Sign up</button>
-								{/* </Link> */}
 								<button type="button" className="btn btn-primary" data-bs-toggle="modal" onClick={handleSubmit}>Log in</button>
 							</div>
 						</div>
@@ -104,11 +158,11 @@ export default function Login(props) {
 			</Modal>
 			<Modal isOpen={invalidModal} toggle={invalidToggle} >
 				<ModalBody>
-					<div className="modal-body">
-						<h5 className="modal-title" id="invalidModalLabel">Invalid Username/Password</h5>
-						<button type="button" className="btn btn-primary" onClick={invalidToggle} >OK</button>
-					</div>
+					<h5 className="modal-title" id="invalidModalLabel">Invalid Username/Password</h5>
 				</ModalBody>
+				<ModalFooter>
+					<button type="button" className="btn btn-primary" onClick={invalidToggle} >OK</button>
+				</ModalFooter>
 			</Modal>
 			<Modal isOpen={registerModal} toggle={registerToggle} >
 				<ModalBody>
@@ -119,10 +173,37 @@ export default function Login(props) {
 				<ModalFooter>
 					<div className="modal-body">
 						<Link to="/register">
-							<button type="button" className="btn btn-primary" data-bs-dismiss="modal" >Yes</button>
+							<button type="button" className="btn btn-primary" >Yes</button>
 						</Link>
 						<button type="button" className="btn btn-danger mx-1" data-bs-dismiss="modal" onClick={registerToggle}>No</button>
 					</div>
+				</ModalFooter>
+			</Modal>
+			<Modal isOpen={forgotPasswordModal} toggle={forgotPasswordToggle} >
+				<ModalHeader>
+					<h5 className="modal-title" id="forgotPasswordModalLabel"><b>Forgot Password?</b></h5>
+				</ModalHeader>
+				<ModalBody>
+					<label htmlFor="newPass" className="col-form-label" >Username</label>
+					<input type="text" className="form-control" value={forgotUser} onChange={handleForgotUser} />
+					<label htmlFor="newPass" className="col-form-label" >New Password</label>
+					<input type="password" className="form-control" value={forgotPassowrd.pass} onChange={handleForgotNewPassword} />
+					<label htmlFor="newPass" className="col-form-label" >Confirm Password</label>
+					<input type="password" className="form-control" value={forgotPassowrd.cpass} onChange={handleForgotConfirmPassword} />
+				</ModalBody>
+				<ModalFooter>
+					<button type="button" className="btn btn-danger mx-1" onClick={forgotPasswordToggle} >Cancel</button>
+					<button type="button" className="btn btn-primary" onClick={handleForgotPassword} >Reset</button>
+				</ModalFooter>
+			</Modal>
+			<Modal isOpen={accountExistsModal} toggle={accountExistsToggle} >
+				<ModalBody>
+					<div className="modal-body">
+						<h5 className="modal-title" id="accountExistsModalLabel">{error}</h5>
+					</div>
+				</ModalBody>
+				<ModalFooter>
+					<button type="button" className="btn btn-primary" onClick={accountExistsToggle}>OK</button>
 				</ModalFooter>
 			</Modal>
 		</>

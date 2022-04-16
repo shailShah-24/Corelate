@@ -1,6 +1,6 @@
 import "./header.css";
 import {Link} from "react-router-dom";
-import { Search, Person, Chat, Notifications } from "@mui/icons-material";
+import { Search} from "@mui/icons-material";
 export default function Header(props) {
 	return (
 		<div className="topbarContainer">

@@ -1,6 +1,5 @@
 import "./sidebar.css";
 import "./rightbar.css";
-import { Driver } from "../Auth/neo4j";
 import React, { useState } from "react";
 import EditBio from "./EditBio";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
@@ -50,9 +49,12 @@ export default function Sidebar(props) {
 			</>
 		);
 	};
+	const newTab = () => {
+		window.open(prfUrl, "_blank");
+	}
 	return (
 		<div className="sidebar">
-			<img src={prfUrl} alt="" className="sidebarImg" /><br /><br /><br />
+			<img src={prfUrl} alt="" className="sidebarImg" onClick={newTab} /><br /><br /><br />
 			<div className="sidebarWrapper">
 			</div>
 			<div>

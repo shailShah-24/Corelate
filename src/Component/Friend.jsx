@@ -1,18 +1,9 @@
 import React from 'react'
 import "./friend.css";
-import { Search, Person, Chat, Notifications } from "@mui/icons-material";
-import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
-import { Users } from "../dummyData";
+import { Search} from "@mui/icons-material";
 import Online from "./Online"
-import { Driver } from '../Auth/neo4j';
-import { useState } from 'react';
-import { FriendList,NonFriendList } from './FriendList';
-// Match (n:User{username:"Darshil_001"})-[:relates]-(u) return u; //Friends
-// MATCH (b:User), (r:User) WHERE b.username = "Darshil_001" AND NOT (b)-[:relates]->(r) AND b <> r RETURN r; //Not Friends
 
 export default function Friend(props) {
-	// FriendList(props.user);
-	// console.log(friend[1]);
 	return (
 		<div>
 			<Search className="searchIcon" />

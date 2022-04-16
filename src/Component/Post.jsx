@@ -11,6 +11,9 @@ export default function Post({ post }) {
     setLike(isLiked ? like-1 : like+1)
     setIsLiked(!isLiked)
   }
+  const newTab = () => {
+    window.open(post.photo, "_blank");
+  }
   return (
     <div className="post">
       <div className="postWrapper">
@@ -32,7 +35,7 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img className="postImg" src={post.photo} alt="" />
+          <img className="postImg" src={post.photo} alt="" onClick={newTab}/>
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

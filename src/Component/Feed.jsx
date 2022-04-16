@@ -2,7 +2,6 @@ import Post from "./Post";
 import Share from "./Share";
 import "./feed.css";
 import { Posts } from "../dummyData";
-import { useState } from "react";
 
 
 export default function Feed(props) {

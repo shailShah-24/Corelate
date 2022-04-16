@@ -78,7 +78,7 @@ export default function Online(props) {
 				</div>
 				<div>
 					<span className="rightbarUsername" onClick={handleUser}>{props.name}</span>
-					<button className={`btn btn-${friend ? 'danger' : 'primary'}`} onClick={friend ? handleDelete : handleAdd} >{friend ? 'Delete' : 'Add'}</button>
+					<button className={`btn btn-${friend ? 'danger' : 'primary'}`} onClick={friend ? handleDelete : handleAdd} >{friend ? 'Remove' : 'Add'}</button>
 				</div>
 			</li>
 			<Modal className="custom-modal-style" isOpen={friendModal} toggle={friendToggle} >
@@ -96,7 +96,7 @@ export default function Online(props) {
 				</ModalBody>
 				<ModalFooter className="foot">
 					<button type="button" className="btn btn-secondary" onClick={friendToggle}>Close</button>
-					<button className={`btn btn-${friend ? 'danger' : 'primary'}`} onClick={friend ? handleDelete : handleAdd} >{friend ? 'Delete' : 'Add'}</button>
+					<button className={`btn btn-${friend ? 'danger' : 'primary'}`} onClick={friend ? handleDelete : handleAdd} >{friend ? 'Remove' : 'Add'}</button>
 				</ModalFooter>
 			</Modal>
 		</>

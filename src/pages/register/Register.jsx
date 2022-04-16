@@ -9,6 +9,8 @@ export default function Register() {
 	const accountToggle = () => setAccountModal(!accountModal);
 	const [accountExistsModal, setAccountExistsModal] = useState(false);
 	const accountExistsToggle = () => setAccountExistsModal(!accountExistsModal);
+	const [passwordNotMatchModal, setPasswordNotMatchModal] = useState(false);
+	const passwordNotMatchToggle = () => setPasswordNotMatchModal(!passwordNotMatchModal);
 	const [error,setError] = useState('');
 	const [uname, setUserName] = useState('');
 	const [email, setEmail] = useState('');
@@ -67,7 +69,7 @@ export default function Register() {
 						setError('Invalid Username');
 						accountExistsToggle();
 					}else if (!is_user_exists) {
-						const userCreateQuery = `Create (n:User{username:$userName,name:$name,email:$Email,password:$Pass,bio:"Your Default Bio is this, to change click on Edit Profile",profilUrl:"/assets/person/profile.png"})`
+						const userCreateQuery = `Create (n:User{username:$userName,name:$name,email:$Email,password:$Pass,bio:"Your Default Bio is this, to change click on Edit Profile",profilUrl:"https://th.bing.com/th/id/OIP.CUBjSeyItGoe83OXtB_JggHaEF?pid=ImgDet&rs=1"})`
 						const result = await session.writeTransaction(tx =>
 							tx.run(userCreateQuery, { userName, name, Email, Pass })
 						)
@@ -81,7 +83,8 @@ export default function Register() {
 				}
 			})();
 		} else {
-			alert('pass not match');
+			setError('Password not match');
+			passwordNotMatchToggle();
 		}
 	}
 	return (
@@ -190,6 +193,16 @@ export default function Register() {
 				</ModalBody>
 				<ModalFooter>
 					<button type="button" className="btn btn-primary" onClick={accountExistsToggle}>OK</button>
+				</ModalFooter>
+			</Modal>
+			<Modal isOpen={passwordNotMatchModal} toggle={passwordNotMatchToggle} >
+				<ModalBody>
+					<div className="modal-body">
+						<h5 className="modal-title" id="passwordNotMatchModalLabel">{error}</h5>
+					</div>
+				</ModalBody>
+				<ModalFooter>
+					<button type="button" className="btn btn-primary" onClick={passwordNotMatchToggle}>OK</button>
 				</ModalFooter>
 			</Modal>
 		</>
