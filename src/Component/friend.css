@@ -1,9 +1,9 @@
 .list {
     width: 100%;
-    height:auto;
+    /* height:auto; */
     overflow-y:scroll; 
     position:relative;
-    height: 300px;
+    height: 700px;
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
     box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);

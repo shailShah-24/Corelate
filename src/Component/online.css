@@ -18,3 +18,14 @@
   .rightbarUsername{
       font-weight: 500;
   }
+  .custom-modal-style {
+    width: auto;
+    height: auto;
+  }
+  .modalImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left:109px;
+  }

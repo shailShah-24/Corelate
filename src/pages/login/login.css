@@ -132,7 +132,7 @@ label {
 }
 #action button:nth-child(2) {
   background:#e8e9ec;
-  color: #fff;
+  color: #777;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 4px;
 }

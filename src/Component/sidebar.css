@@ -14,3 +14,13 @@
     object-fit: cover;
     margin-left:109px;
 }
+.Name{
+    text-align: center;
+}
+.topbarImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+  }
