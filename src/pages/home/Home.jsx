@@ -34,7 +34,7 @@ export default function Home(props) {
 	})();
 	return (
 		<>
-			<Header profileUrl={proUrl}/>
+			<Header name={props.name} profileUrl={proUrl}/>
 			<div className="homeContainer">
 				<Sidebar userName={userName} Name={name} bioD={biod} email={email} profileUrl={proUrl} />
 				<Feed Name={name} profileUrl={proUrl} />

@@ -24,3 +24,14 @@
     object-fit: cover;
     cursor: pointer;
   }
+
+  .editButton{
+    border: none;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: rgb(5, 160, 132);
+    font-weight: 500;
+    margin-right: 20px;
+    cursor: pointer;
+    color: white;
+}

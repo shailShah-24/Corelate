@@ -40,7 +40,7 @@ export default function Share(props) {
 							<img ref={uploadedImage}/>
 						</div>
 					</div>
-					<button className="shareButton">Share</button>
+					<button className=" shareButton">Share</button>
 				</div>
 			</div>
 		</div >

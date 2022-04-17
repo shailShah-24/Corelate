@@ -17,6 +17,7 @@
   }  
   .rightbarUsername{
       font-weight: 500;
+      max-width: 100px;
   }
   .custom-modal-style {
     width: auto;
@@ -28,4 +29,9 @@
     border-radius: 50%;
     object-fit: cover;
     margin-left:109px;
+  }
+
+  #ma{
+    margin-left: 250px;
+    /* margin-right: -50px; */
   }

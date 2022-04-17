@@ -4,12 +4,15 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import {FriendList,NonFriendList} from './Component/FriendList';
+import Logout from './pages/logout/logout';
+import './App.css';
+
 export default function App(){
 	const [userName, setUserName] = useState('');
 	const handleUserName = (event)=>{
 		setUserName(event.target.value);
-		handleFriends(userName);
-		handleNonFriends(userName);
+		// handleFriends(userName);
+		// handleNonFriends(userName);
 	}
 	const [friendList,setFriendList] = useState();
 	const [nonFriendList,setNonFriendList] = useState();
@@ -19,7 +22,6 @@ export default function App(){
 	const handleNonFriends = (e)=>{
 		setNonFriendList(NonFriendList(e));
 	}
-	console.log(friendList);
 	return (
 		<Router>
 			<div className="nw">
@@ -27,11 +29,12 @@ export default function App(){
 					<Route exact path="/" element={<Login user={userName} setUser={handleUserName}/>} />
 					<Route exact path="/register" element={<Register />}>
 					</Route>
-					<Route exact path="/home" element={<Home user={userName} friend={friendList} nonFriend={nonFriendList}/>}>
+					<Route exact path="/home" element={userName?<Home user={userName} setUser={handleUserName} friend={friendList} nonFriend={nonFriendList}/>:<Logout/>}>
+					</Route>
+					<Route exact path="/logout" element={<Logout/>}>
 					</Route>
 				</Routes>
 			</div>
 		</Router>
-
 	);
 }

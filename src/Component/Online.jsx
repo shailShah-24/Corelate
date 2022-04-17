@@ -9,7 +9,7 @@ export default function Online(props) {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [biod, setBiod] = useState('');
-	const [proUrl,setProUrl] = useState('');
+	const [proUrl, setProUrl] = useState('');
 	const handleAdd = (e) => {
 		setFriend(true);
 		(async () => {
@@ -55,9 +55,9 @@ export default function Online(props) {
 			try {
 				const query = `Match (n:User{username:$user1}) return n;`;
 				const queryResult = await session.writeTransaction(tx =>
-					tx.run(query, { user1:user1 })
+					tx.run(query, { user1: user1 })
 				)
-				queryResult.records.forEach(record =>{
+				queryResult.records.forEach(record => {
 					const Information = record.get('n');
 					setName(Information.properties.name);
 					setEmail(Information.properties.email);
@@ -78,7 +78,7 @@ export default function Online(props) {
 				</div>
 				<div>
 					<span className="rightbarUsername" onClick={handleUser}>{props.name}</span>
-					<button className={`btn btn-${friend ? 'danger' : 'primary'}`} onClick={friend ? handleDelete : handleAdd} >{friend ? 'Remove' : 'Add'}</button>
+					<button id="ma" className={`btn btn-${friend ? 'danger' : 'success'}`} onClick={friend ? handleDelete : handleAdd} >{friend ? 'Unrelate' : 'Relate'}</button>
 				</div>
 			</li>
 			<Modal className="custom-modal-style" isOpen={friendModal} toggle={friendToggle} >
@@ -96,7 +96,7 @@ export default function Online(props) {
 				</ModalBody>
 				<ModalFooter className="foot">
 					<button type="button" className="btn btn-secondary" onClick={friendToggle}>Close</button>
-					<button className={`btn btn-${friend ? 'danger' : 'primary'}`} onClick={friend ? handleDelete : handleAdd} >{friend ? 'Remove' : 'Add'}</button>
+					<button className={`btn btn-${friend ? 'danger' : 'success'}`} onClick={friend ? handleDelete : handleAdd} >{friend ? 'Unrelate' : 'Relate'}</button>
 				</ModalFooter>
 			</Modal>
 		</>

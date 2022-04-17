@@ -18,7 +18,7 @@ export default function Header(props) {
 			</div>
 			<div className="topbarRight">
 				<div className="topbarLinks">
-					<Link to="/"><button className="topbarLink btn btn-danger">Logout</button></Link>
+					<Link to="/logout"><button className="topbarLink btn btn-danger">Logout</button></Link>
 				</div>
 				<img src={props.profileUrl}  alt="" className="topbarImg" />
 			</div>

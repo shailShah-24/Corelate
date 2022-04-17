@@ -140,6 +140,7 @@ export default function Login(props) {
 							<span onClick={forgotPasswordToggle}>Forgot Your Password?</span>
 							<div className="action" id="action">
 								<button type="button" className="btn btn-primary" data-bs-toggle="modal" onClick={registerToggle}>Sign up</button>
+								{/* Link tiio homre */}
 								<button type="button" className="btn btn-primary" data-bs-toggle="modal" onClick={handleSubmit}>Log in</button>
 							</div>
 						</div>

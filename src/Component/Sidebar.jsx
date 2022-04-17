@@ -1,5 +1,4 @@
 import "./sidebar.css";
-import "./rightbar.css";
 import React, { useState } from "react";
 import EditBio from "./EditBio";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
@@ -30,7 +29,7 @@ export default function Sidebar(props) {
 						<p><b>Email:</b> {Email}</p>
 						<p><b>Biodata:</b> {biodata}</p>
 					</div>
-					<button className="shareButton btn btn-success" onClick={editProfileToggle}>Edit Bio</button>
+					<button className="editButton btn" onClick={editProfileToggle}>Edit Bio</button>
 				</div>
 				<Modal isOpen={editProfileModal} toggle={editProfileToggle} >
 					<ModalHeader>
